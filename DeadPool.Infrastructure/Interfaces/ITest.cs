@@ -2,8 +2,8 @@
 {
     public interface ITest
     {
-        string Name { get; set; }
-        string Description { get; set; }
-        void Test();
+        string Name { get; }
+        string Description { get; }
+        void Test(ITestContext context);
     }
 }
