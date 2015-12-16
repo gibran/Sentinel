@@ -1,6 +1,7 @@
-﻿using DeadPool.Infrastructure.Interfaces;
+﻿using DeadPool.Infrastructure.Enums;
+using DeadPool.Infrastructure.Interfaces;
+using DeadPool.Infrastructure.Tests;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
@@ -96,21 +97,8 @@ namespace DeadPool.Infrastructure
 
         public void RaiseEvent(EventType type, string message)
         {
-
         }
 
-        #endregion
-    }
-
-    public interface ITestContext
-    {
-        void RaiseEvent(EventType type, string message);
-    }
-
-    public enum EventType
-    {
-        Success,
-        Fail,
-        Warning
+        #endregion [ Events ]
     }
 }

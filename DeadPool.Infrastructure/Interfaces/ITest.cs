@@ -1,4 +1,6 @@
-﻿namespace DeadPool.Infrastructure.Interfaces
+﻿using DeadPool.Infrastructure.Tests;
+
+namespace DeadPool.Infrastructure.Interfaces
 {
     public interface ITest
     {

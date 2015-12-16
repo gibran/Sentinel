@@ -9,24 +9,23 @@ namespace DeadPool.Infrastructure
     public class DeadPoolService
     {
         public static DeadPoolService Service = new DeadPoolService();
-        private readonly ConcurrentDictionary<string, ITest> tests = new ConcurrentDictionary<string, ITest>();
         private readonly ConcurrentDictionary<string, TestEvaluator> evaluators = new ConcurrentDictionary<string, TestEvaluator>();
-
-        public event EventHandler TestStarted;
+        private readonly ConcurrentDictionary<string, ITest> tests = new ConcurrentDictionary<string, ITest>();
         public event EventHandler TestCompleted;
 
-        #region [ Events ]
+        public event EventHandler TestStarted;
 
-        protected void OnTestStarted(object sender, EventArgs e)
-        {
-            if (TestStarted != null) TestStarted(sender, e);
-        }
+        #region [ Events ]
 
         protected void OnTestCompleted(object sender, EventArgs e)
         {
             if (TestCompleted != null) TestCompleted(sender, e);
         }
 
+        protected void OnTestStarted(object sender, EventArgs e)
+        {
+            if (TestStarted != null) TestStarted(sender, e);
+        }
         #endregion
 
         public TestEvaluator Add(ITest test)

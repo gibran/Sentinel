@@ -1,5 +1,9 @@
-﻿using System.Net.Http.Formatting;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Net.Http.Formatting;
 using System.Web.Http;
+using System.Web.Http.Controllers;
+using System.Web.Http.Routing;
 
 namespace DeadPool.Mvc4
 {
@@ -21,6 +25,7 @@ namespace DeadPool.Mvc4
             GlobalConfiguration.Configuration.Formatters.Clear();
             GlobalConfiguration.Configuration.Formatters.Add(new JsonMediaTypeFormatter());
             GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings = new Newtonsoft.Json.JsonSerializerSettings();
+            GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings.Formatting = Newtonsoft.Json.Formatting.Indented;
         }
     }
 }

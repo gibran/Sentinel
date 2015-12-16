@@ -1,7 +1,5 @@
 ﻿using DeadPool.Infrastructure;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
@@ -11,18 +9,25 @@ namespace DeadPool.Mvc4.Controllers
     public class DeadPoolTestController : ApiController
     {
         // GET api/<controller>
-        public IEnumerable<dynamic> Get()
+        public ResultInstance Get(string id)
         {
-            var tests = DeadPoolService.Service.GetAll();
+            try
+            {
+                var test = DeadPoolService.Service.GetByKey(id);
 
-            return tests.Select(test => new ResultInstance {
-                Result = test.Run(),
-                Key = test.Key,
-                Name = test.Name,
-                Description = test.Description
-            }).ToList();
+                return new ResultInstance
+                {
+                    Result = test.Run(),
+                    Key = test.Key,
+                    Name = test.Name,
+                    Description = test.Description
+                };
+            }
+            catch (Exception e)
+            {
+                throw new HttpResponseException(Request.CreateErrorResponse(HttpStatusCode.BadRequest, e.Message));
+            }
         }
-
     }
 
     [Serializable]
