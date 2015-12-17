@@ -9,7 +9,7 @@ namespace DeadPool.Mvc4.App_Start
     {
         public static void PreStart()
         {
-            Register(DeadPoolService.Service);
+            Register(DeadPoolService.Instance);
         }
 
         public static void Register(DeadPoolService service)

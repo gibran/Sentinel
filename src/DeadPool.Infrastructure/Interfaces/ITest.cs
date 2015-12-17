@@ -1,4 +1,4 @@
-﻿using DeadPool.Infrastructure.Tests;
+﻿using System.Threading.Tasks;
 
 namespace DeadPool.Infrastructure.Interfaces
 {
@@ -6,6 +6,7 @@ namespace DeadPool.Infrastructure.Interfaces
     {
         string Name { get; }
         string Description { get; }
-        void Test(ITestContext context);
+
+        Task<bool> Test(ITestContext context);
     }
 }

@@ -2,12 +2,10 @@
 
 namespace DeadPool.Infrastructure
 {
-    [Serializable]
     public class TestResult
     {
-        public string Message { get; internal set; }
-        public bool Success { get; internal set; }
-        public long SpentTime { get; internal set; }
-
+        public string ErrorMessage { get; set; }
+        public TimeSpan? TimeSpent { get; set; }
+        public bool Success => ErrorMessage == null && TimeSpent != null;
     }
 }
