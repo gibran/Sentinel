@@ -69,6 +69,8 @@ namespace DeadPool.Infrastructure.Tests
                     predicate = predicate.And(c => c.Name != exclude);
             }
 
+            predicate = predicate.And(c => !string.IsNullOrWhiteSpace(c.ConnectionString));
+
             return ConfigurationManager.ConnectionStrings.OfType<ConnectionStringSettings>().Where(predicate.Compile()).ToList();
         }
     }
