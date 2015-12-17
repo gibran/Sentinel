@@ -2,23 +2,23 @@
 using System;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Http;
 
 namespace DeadPool.Mvc4.Controllers
 {
     public class DeadPoolTestController : ApiController
     {
-        // GET api/<controller>
-        public ResultInstance Get(string id)
+        public async Task<ResultInstance> Get(string id)
         {
             try
             {
-                var test = DeadPoolService.Service.GetByKey(id);
+                var test = DeadPoolService.Instance.GetByKey(id);
+                await test.Run();
 
                 return new ResultInstance
                 {
-                    Result = test.Run(),
-                    Key = test.Key,
+                    Result = test.Result,
                     Name = test.Name,
                     Description = test.Description
                 };
@@ -33,9 +33,8 @@ namespace DeadPool.Mvc4.Controllers
     [Serializable]
     public class ResultInstance
     {
-        public TestResult Result { get; set; }
-        public string Key { get; set; }
-        public string Name { get; set; }
         public string Description { get; set; }
+        public string Name { get; set; }
+        public TestResult Result { get; set; }
     }
 }

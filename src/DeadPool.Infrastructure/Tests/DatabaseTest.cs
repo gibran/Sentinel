@@ -1,60 +1,50 @@
-﻿using DeadPool.Infrastructure.Interfaces;
-using System.Linq;
-using System.Configuration;
-using System.Collections.Generic;
-using System.Linq.Expressions;
+﻿using DeadPool.Infrastructure.Enums;
+using DeadPool.Infrastructure.Interfaces;
 using System;
-using System.Data.Common;
-using System.Threading.Tasks;
-using DeadPool.Infrastructure.Enums;
 using System.Collections.Concurrent;
+using System.Collections.Generic;
+using System.Configuration;
+using System.Data.Common;
+using System.Linq;
+using System.Linq.Expressions;
+using System.Threading.Tasks;
 
 namespace DeadPool.Infrastructure.Tests
 {
     public class DatabaseTest : ITest
     {
-        public string Description
-        {
-            get { return "Teste de Banco"; }
-        }
+        public string Description => "Teste de Banco";
+        public string Name => @"DatabaseTest";
 
-        public string Name
-        {
-            get { return @"DatabaseTest"; }
-        }
-
-        private string[] _excludeConnections;
-
-        public DatabaseTest()
-        {
-            _excludeConnections = null;
-        }
+        readonly string[] _excludeConnections;
 
         public DatabaseTest(params string[] excludeConnections)
         {
             _excludeConnections = excludeConnections;
         }
 
-        public void Test(ITestContext context)
+        public async Task<bool> Test(ITestContext context)
         {
-            var connections = GetConnections();
+            var connections = GetConnections().ToList();
             var failedTest = new ConcurrentBag<ConnectionStringSettings>();
 
-            if (!connections.Any()) return;
+            if (!connections.Any()) return await Task.FromResult(false);
 
-            Parallel.ForEach(connections.ToList(), connectionSetting =>
+            Parallel.ForEach(connections.ToList(), async connectionSetting =>
                 {
                     try
                     {
                         var factory = DbProviderFactories.GetFactory(connectionSetting.ProviderName);
-
                         using (var cnn = factory.CreateConnection())
                         {
+                            if (cnn == null)
+                                throw new InvalidOperationException("Connection cannot be null.");
+
                             cnn.ConnectionString = connectionSetting.ConnectionString;
-                            cnn.Open();
+                            await cnn.OpenAsync();
                         }
 
-                        context.RaiseEvent(EventType.Success, string.Format("Connection test ( {0} ) success", connectionSetting.Name)); //TODO: Incluir erro correto
+                        context.RaiseEvent(EventType.Success, $"Connection test ( {connectionSetting.Name} ) success"); //TODO: Incluir erro correto
                     }
                     catch (Exception ex)
                     {
@@ -63,14 +53,13 @@ namespace DeadPool.Infrastructure.Tests
                     }
                 });
 
-            if (failedTest.Any())
-            {
-                var msg = string.Format("Connection test ( {0} ) failed", string.Join(", ", failedTest.Select(x => x.Name).ToArray()));
-                throw new Exception(msg);
-            }
+            if (!failedTest.Any()) return await Task.FromResult(true);
+
+            var msg = $"Connection test ( {string.Join(", ", failedTest.Select(x => x.Name).ToArray())} ) failed";
+            throw new Exception(msg);
         }
 
-        private IEnumerable<ConnectionStringSettings> GetConnections()
+        IEnumerable<ConnectionStringSettings> GetConnections()
         {
             var predicate = PredicateBuilder.True<ConnectionStringSettings>();
 
@@ -86,8 +75,15 @@ namespace DeadPool.Infrastructure.Tests
 
     public static class PredicateBuilder
     {
-        public static Expression<Func<T, bool>> True<T>() { return f => true; }
-        public static Expression<Func<T, bool>> False<T>() { return f => false; }
+        public static Expression<Func<T, bool>> True<T>()
+        {
+            return f => true;
+        }
+
+        public static Expression<Func<T, bool>> False<T>()
+        {
+            return f => false;
+        }
 
         public static Expression<Func<T, bool>> Or<T>(this Expression<Func<T, bool>> expr1, Expression<Func<T, bool>> expr2)
         {
