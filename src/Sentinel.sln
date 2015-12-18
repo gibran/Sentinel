@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sentinel", "Sentinel\Sentinel.csproj", "{98632570-AE02-4B4D-8AEB-D4C6BA6D9B81}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sentinel.Mvc4", "Sentinel.Mvc4\Sentinel.Mvc4.csproj", "{829FF05D-2C52-4B7E-8AC5-18BBF515F35A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sentinel.Tests.Database", "Sentinel.Tests.Database\Sentinel.Tests.Database.csproj", "{A3D97BA2-5FB6-43D3-804E-621E9197FC69}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{98632570-AE02-4B4D-8AEB-D4C6BA6D9B81}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98632570-AE02-4B4D-8AEB-D4C6BA6D9B81}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98632570-AE02-4B4D-8AEB-D4C6BA6D9B81}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{98632570-AE02-4B4D-8AEB-D4C6BA6D9B81}.Release|Any CPU.Build.0 = Release|Any CPU
+		{829FF05D-2C52-4B7E-8AC5-18BBF515F35A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{829FF05D-2C52-4B7E-8AC5-18BBF515F35A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{829FF05D-2C52-4B7E-8AC5-18BBF515F35A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{829FF05D-2C52-4B7E-8AC5-18BBF515F35A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3D97BA2-5FB6-43D3-804E-621E9197FC69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3D97BA2-5FB6-43D3-804E-621E9197FC69}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3D97BA2-5FB6-43D3-804E-621E9197FC69}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3D97BA2-5FB6-43D3-804E-621E9197FC69}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
