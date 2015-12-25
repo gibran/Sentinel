@@ -1,2 +1,2 @@
-# deadpool - A simple test based checklist for .Net
+# Sentinel - A simple test based checklist for .Net
 
