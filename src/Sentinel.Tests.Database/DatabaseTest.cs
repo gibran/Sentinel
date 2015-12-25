@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Sentinel.Result;
+using System;
 using System.Configuration;
 using System.Data.Common;
 using System.Linq;
@@ -8,50 +8,53 @@ namespace Sentinel.Tests.Database
 {
     public class DatabaseTest : SentinelTestBase
     {
-        public DatabaseTest(string name, string description) : base(name, description)
+        private readonly string _connectionName;
+
+        public DatabaseTest(string name, string description, string connectionName) : base(name, description)
         {
+            if (string.IsNullOrWhiteSpace(connectionName))
+                throw new ArgumentNullException(nameof(connectionName));
+
+            _connectionName = connectionName;
         }
 
         protected override void RunTest()
         {
-            var connections = GetConnections().ToList();
+            var connection = GetConnection();
 
-            if (!connections.Any())
+            if (ReferenceEquals(connection, null))
             {
                 SetResult(TestResult.CreateFailed(GetName(), "No connections found."));
                 return;
             }
 
-            foreach (var connection in connections)
+            try
             {
-                try
+                var factory = DbProviderFactories.GetFactory(connection.ProviderName);
+                using (var dbConnection = factory.CreateConnection())
                 {
-                    var factory = DbProviderFactories.GetFactory(connection.ProviderName);
-                    using (var dbConnection = factory.CreateConnection())
-                    {
-                        if (dbConnection == null)
-                            throw new InvalidOperationException("Connection cannot be null.");
+                    if (dbConnection == null)
+                        throw new InvalidOperationException("Connection cannot be null.");
 
-                        dbConnection.ConnectionString = connection.ConnectionString;
-                        dbConnection.Open();
-                    }
-                }
-                catch (Exception e)
-                {
-                    SetResult(TestResult.CreateFailed(GetName(), e.Message));
-                    return;
+                    dbConnection.ConnectionString = connection.ConnectionString;
+                    dbConnection.Open();
                 }
             }
+            catch (Exception e)
+            {
+                SetResult(TestResult.CreateFailed(GetName(), e.Message));
+                return;
+            }
 
-            SetResult(TestResult.CreateSuccess(GetName()));
+            TestResult.CreateSuccess(GetName());
         }
 
-        static IEnumerable<ConnectionStringSettings> GetConnections()
+        private ConnectionStringSettings GetConnection()
         {
             var predicate = PredicateBuilder.True<ConnectionStringSettings>();
-            predicate = predicate.And(c => !string.IsNullOrWhiteSpace(c.ConnectionString));
+            predicate = predicate.And(c => c.Name == _connectionName);
 
-            return ConfigurationManager.ConnectionStrings.OfType<ConnectionStringSettings>().Where(predicate.Compile()).ToList();
+            return ConfigurationManager.ConnectionStrings.OfType<ConnectionStringSettings>().Where(predicate.Compile()).FirstOrDefault();
         }
     }
 }

@@ -1,18 +1,17 @@
-﻿using Sentinel.Annotations;
-using Sentinel.Interfaces;
+﻿using Sentinel.Interfaces;
+using Sentinel.Result;
 using System;
-using System.ComponentModel;
 
 namespace Sentinel
 {
     public abstract class SentinelTestBase : ITest
     {
-        readonly object _lock = new object();
-        readonly string _name;
-        readonly string _description;
+        private readonly object _lock = new object();
+        private readonly string _name;
+        private readonly string _description;
 
-        bool _shuttingDown;
-        TestResult _testResult;
+        private bool _shuttingDown;
+        private TestResult _testResult;
 
         protected SentinelTestBase(string name, string description)
         {
@@ -52,7 +51,7 @@ namespace Sentinel
             return _testResult;
         }
 
-        public void SetResult(TestResult testResult)
+        protected void SetResult(TestResult testResult)
         {
             _testResult = testResult;
             OnResultChanged(null);
@@ -62,7 +61,7 @@ namespace Sentinel
 
         public event EventHandler ResultChanged;
 
-        void OnResultChanged(EventArgs e)
+        private void OnResultChanged(EventArgs e)
         {
             var handler = ResultChanged;
             handler?.Invoke(this, e);

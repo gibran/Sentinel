@@ -49,16 +49,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enums\JobState.cs" />
+    <Compile Include="Interfaces\INotifier.cs" />
     <Compile Include="Interfaces\ISentinelService.cs" />
     <Compile Include="Interfaces\ITestResultStore.cs" />
     <Compile Include="Properties\Annotations.cs" />
+    <Compile Include="Result\TestResult.cs" />
+    <Compile Include="SentinelInitializer.cs" />
     <Compile Include="SentinelService.cs" />
     <Compile Include="Enums\EventType.cs" />
     <Compile Include="Interfaces\ITest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SentinelTestBase.cs" />
     <Compile Include="Stores\InMemoryTestResultStore.cs" />
-    <Compile Include="TestResult.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

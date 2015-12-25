@@ -1,3 +1,4 @@
+using Sentinel.Result;
 using System.Collections.Generic;
 
 namespace Sentinel.Interfaces
@@ -6,7 +7,7 @@ namespace Sentinel.Interfaces
     {
         void Add(SentinelTestBase test);
 
-        void Prepare();
+        SentinelInitializer Prepare();
 
         TestResult GetResultByTestName(string testName);
 

@@ -1,13 +1,13 @@
 ﻿using Sentinel.Enums;
 
-namespace Sentinel
+namespace Sentinel.Result
 {
     public class TestResult
     {
         public string Name { get; set; }
         public JobState? JobState { get; set; }
         public EventType? EventType { get; set; }
-        public string ErrorMessage { get; set; }
+        public string Message { get; set; }
         public string Description { get; set; }
 
         public static TestResult CreateNew(string name)
@@ -23,7 +23,7 @@ namespace Sentinel
                 JobState = Enums.JobState.Done,
                 EventType = Enums.EventType.Fail,
                 Description = description,
-                ErrorMessage = errorMessage
+                Message = errorMessage
             };
         }
 
@@ -32,7 +32,7 @@ namespace Sentinel
             return new TestResult
             {
                 Name = name,
-                ErrorMessage = null,
+                Message = "Test passed.",
                 EventType = Enums.EventType.Success,
                 Description = description,
                 JobState = Enums.JobState.Done

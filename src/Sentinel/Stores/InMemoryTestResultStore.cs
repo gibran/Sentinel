@@ -1,11 +1,13 @@
 ﻿using Sentinel.Interfaces;
+using Sentinel.Result;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 
 namespace Sentinel.Stores
 {
     public class InMemoryTestResultStore : ITestResultStore
     {
-        readonly Dictionary<string, TestResult> _store = new Dictionary<string, TestResult>();
+        private readonly ConcurrentDictionary<string, TestResult> _store = new ConcurrentDictionary<string, TestResult>();
 
         public void Write(string key, TestResult result)
         {

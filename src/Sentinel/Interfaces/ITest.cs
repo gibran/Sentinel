@@ -1,16 +1,15 @@
 ﻿using FluentScheduler;
+using Sentinel.Result;
 
 namespace Sentinel.Interfaces
 {
-    public interface ITest : ITask
+    internal interface ITest : ITask
     {
         string GetName();
 
         string GetDescription();
 
         TestResult GetResult();
-
-        void SetResult(TestResult testResult);
 
         void Shutdown();
     }

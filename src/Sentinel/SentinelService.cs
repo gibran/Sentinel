@@ -1,5 +1,6 @@
 ﻿using FluentScheduler;
 using Sentinel.Interfaces;
+using Sentinel.Result;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,12 +9,15 @@ namespace Sentinel
 {
     public class SentinelService : Registry, ISentinelService
     {
-        readonly List<SentinelTestBase> _tests = new List<SentinelTestBase>();
-        readonly ITestResultStore _testResultStore;
+        private readonly List<SentinelTestBase> _tests = new List<SentinelTestBase>();
+        private readonly SentinelInitializer _sentinelInitializer;
+
+        private readonly ITestResultStore _testResultStore;
 
         public SentinelService(ITestResultStore testResultStore)
         {
             _testResultStore = testResultStore;
+            _sentinelInitializer = new SentinelInitializer(this);
         }
 
         public void Add(SentinelTestBase test)
@@ -26,18 +30,23 @@ namespace Sentinel
             _tests.Add(test);
         }
 
-        void TestOnResultChanged(object sender, EventArgs eventArgs)
+        private void TestOnResultChanged(object sender, EventArgs eventArgs)
         {
             var test = (SentinelTestBase)sender;
-            _testResultStore.Write(test.GetName(), test.GetResult());
+            var result = test.GetResult();
+
+            _testResultStore.Write(test.GetName(), result);
+            OnAnyTestResultChanged(result);
         }
 
-        public void Prepare()
+        public SentinelInitializer Prepare()
         {
             _tests
                 .Select((value, index) => new { value, index })
                 .ToList()
                 .ForEach(t => Schedule(t.value.Execute).ToRunNow().AndEvery(t.index + 1).Minutes());
+
+            return _sentinelInitializer;
         }
 
         public TestResult GetResultByTestName(string testName)
@@ -48,6 +57,13 @@ namespace Sentinel
         public IEnumerable<TestResult> GetAllResults()
         {
             return _testResultStore.GetAll();
+        }
+
+        public event EventHandler<TestResult> Notifier;
+
+        private void OnAnyTestResultChanged(TestResult testResult)
+        {
+            Notifier?.Invoke(this, testResult);
         }
     }
 }

@@ -16,11 +16,11 @@ namespace Sentinel.Mvc4
             Register(Instance);
         }
 
-        static void Register(SentinelService service)
+        private static void Register(SentinelService service)
         {
-            service.Add(new DatabaseTest("Databases", "Databases"));
-            service.Prepare();
-            TaskManager.Initialize(service);
+            service.Add(new DatabaseTest("Databases", "Databases", "DefaultConnection"));
+            service.Prepare()
+                   .Start();
         }
     }
 }
