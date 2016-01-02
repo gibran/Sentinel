@@ -37,10 +37,5 @@ namespace Sentinel.Mvc4
                 }
             });
         }
-
-        private void S_OnTestResultChange(object sender, TestResult e)
-        {
-            throw new System.NotImplementedException();
-        }
     }
 }
