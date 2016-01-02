@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Sentinel.Middleware.Extensions
 {
-    static class OwinExtensions
+    internal static class OwinExtensions
     {
         internal static ILifetimeScope GetLifetimeScope(this IDictionary<string, object> env)
         {
@@ -13,7 +13,7 @@ namespace Sentinel.Middleware.Extensions
 
         internal static void SetLifetimeScope(this IDictionary<string, object> env, ILifetimeScope scope)
         {
-            new OwinContext(env).Set<ILifetimeScope>("sentinel:autofacscope", scope);
+            new OwinContext(env).Set("sentinel:autofacscope", scope);
         }
     }
 }

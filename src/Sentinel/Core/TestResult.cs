@@ -10,6 +10,10 @@ namespace Sentinel.Core
         public string Message { get; set; }
         public string Description { get; set; }
 
+        protected TestResult()
+        {
+        }
+
         public static TestResult CreateNew(string name)
         {
             return new TestResult { Name = name, JobState = Enums.JobState.New };

@@ -2,7 +2,7 @@
 
 namespace Sentinel.Core
 {
-    public class SentinelInitializer
+    internal class SentinelInitializer
     {
         private readonly Registry _service;
 

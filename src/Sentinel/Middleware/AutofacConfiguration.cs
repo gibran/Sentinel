@@ -6,7 +6,7 @@ using System;
 
 namespace Sentinel.Middleware
 {
-    public static class AutofacConfiguration
+    internal static class AutofacConfiguration
     {
         public static IContainer Configure(SentinelOptions options)
         {
@@ -23,11 +23,14 @@ namespace Sentinel.Middleware
             return container;
         }
 
-        static SentinelService CreateService(SentinelOptions options)
+        private static SentinelService CreateService(SentinelOptions options)
         {
             var sentinelService = new SentinelService(options.TestResultStore);
             foreach (var test in options.Tests)
                 sentinelService.AddTest(test);
+
+            if (options.OnTestResultChange != null)
+                sentinelService.Notifier += options.OnTestResultChange;
 
             sentinelService.Prepare().Start();
             return sentinelService;

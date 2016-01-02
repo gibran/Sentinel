@@ -6,11 +6,11 @@ using System.Linq;
 
 namespace Sentinel.Core
 {
-    public class SentinelService : Registry, ISentinelService
+    internal class SentinelService : Registry, ISentinelService
     {
-        readonly List<SentinelTestBase> _tests = new List<SentinelTestBase>();
-        readonly SentinelInitializer _sentinelInitializer;
-        readonly ITestResultStore _testResultStore;
+        private readonly List<SentinelTestBase> _tests = new List<SentinelTestBase>();
+        private readonly SentinelInitializer _sentinelInitializer;
+        private readonly ITestResultStore _testResultStore;
 
         public SentinelService(ITestResultStore testResultStore)
         {
@@ -28,7 +28,7 @@ namespace Sentinel.Core
             _tests.Add(test);
         }
 
-        void TestOnResultChanged(object sender, EventArgs eventArgs)
+        private void TestOnResultChanged(object sender, EventArgs eventArgs)
         {
             var test = (SentinelTestBase)sender;
             var result = test.GetResult();
@@ -57,11 +57,11 @@ namespace Sentinel.Core
             return _testResultStore.GetAll();
         }
 
-        public event EventHandler<TestResult> Notifier;
+        public event Action<TestResult> Notifier;
 
-        void OnAnyTestResultChanged(TestResult testResult)
+        private void OnAnyTestResultChanged(TestResult testResult)
         {
-            Notifier?.Invoke(this, testResult);
+            Notifier?.Invoke(testResult);
         }
     }
 }

@@ -6,6 +6,7 @@ using Sentinel.Middleware;
 using Sentinel.Middleware.Extensions;
 using Sentinel.Mvc4;
 using Sentinel.Tests.Database;
+using System;
 using System.Collections.Generic;
 using System.Web.Http;
 using System.Web.Mvc;
@@ -29,8 +30,17 @@ namespace Sentinel.Mvc4
                 Tests = new List<SentinelTestBase>
                 {
                     new DatabaseTest("test", "test", "DefaultConnection")
+                },
+                OnTestResultChange = result =>
+                {
+                    Console.WriteLine(result.Name);
                 }
             });
+        }
+
+        private void S_OnTestResultChange(object sender, TestResult e)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

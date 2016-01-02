@@ -10,9 +10,10 @@ using System.Web.Http;
 namespace Sentinel.Api.Controllers
 {
     [NoCache]
+    [RoutePrefix("api")]
     public class SentinelController : ApiController
     {
-        ISentinelService SentinelService { get; set; }
+        private ISentinelService SentinelService { get; set; }
 
         public SentinelController(ISentinelService sentinelService)
         {

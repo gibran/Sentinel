@@ -6,8 +6,6 @@ namespace Sentinel.Core.Interfaces
     {
         void AddTest(SentinelTestBase test);
 
-        SentinelInitializer Prepare();
-
         TestResult GetResultByTestName(string testName);
 
         IEnumerable<TestResult> GetAllResults();

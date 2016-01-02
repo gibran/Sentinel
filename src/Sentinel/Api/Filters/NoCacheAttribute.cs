@@ -4,7 +4,7 @@ using System.Web.Http.Filters;
 
 namespace Sentinel.Api.Filters
 {
-    public class NoCacheAttribute : ActionFilterAttribute
+    internal class NoCacheAttribute : ActionFilterAttribute
     {
         public override void OnActionExecuted(HttpActionExecutedContext actionExecutedContext)
         {

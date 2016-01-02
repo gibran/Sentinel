@@ -97,7 +97,6 @@
     <Compile Include="Middleware\Extensions\SentinelAppBuilderExtensions.cs" />
     <Compile Include="Middleware\SentinelOptions.cs" />
     <Compile Include="Middleware\WebApiConfig.cs" />
-    <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
