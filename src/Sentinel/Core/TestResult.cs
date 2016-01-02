@@ -1,6 +1,6 @@
-﻿using Sentinel.Enums;
+﻿using Sentinel.Core.Enums;
 
-namespace Sentinel.Result
+namespace Sentinel.Core
 {
     public class TestResult
     {

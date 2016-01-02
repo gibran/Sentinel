@@ -1,8 +1,7 @@
-﻿using Sentinel.Interfaces;
-using Sentinel.Result;
+﻿using Sentinel.Core.Interfaces;
 using System;
 
-namespace Sentinel
+namespace Sentinel.Core
 {
     public abstract class SentinelTestBase : ITest
     {

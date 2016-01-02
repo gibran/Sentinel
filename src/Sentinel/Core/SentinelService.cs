@@ -1,18 +1,16 @@
 ﻿using FluentScheduler;
-using Sentinel.Interfaces;
-using Sentinel.Result;
+using Sentinel.Core.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Sentinel
+namespace Sentinel.Core
 {
     public class SentinelService : Registry, ISentinelService
     {
-        private readonly List<SentinelTestBase> _tests = new List<SentinelTestBase>();
-        private readonly SentinelInitializer _sentinelInitializer;
-
-        private readonly ITestResultStore _testResultStore;
+        readonly List<SentinelTestBase> _tests = new List<SentinelTestBase>();
+        readonly SentinelInitializer _sentinelInitializer;
+        readonly ITestResultStore _testResultStore;
 
         public SentinelService(ITestResultStore testResultStore)
         {
@@ -20,7 +18,7 @@ namespace Sentinel
             _sentinelInitializer = new SentinelInitializer(this);
         }
 
-        public void Add(SentinelTestBase test)
+        public void AddTest(SentinelTestBase test)
         {
             if (_tests.Contains(test))
                 throw new Exception("Test already exists.");
@@ -30,7 +28,7 @@ namespace Sentinel
             _tests.Add(test);
         }
 
-        private void TestOnResultChanged(object sender, EventArgs eventArgs)
+        void TestOnResultChanged(object sender, EventArgs eventArgs)
         {
             var test = (SentinelTestBase)sender;
             var result = test.GetResult();
@@ -61,7 +59,7 @@ namespace Sentinel
 
         public event EventHandler<TestResult> Notifier;
 
-        private void OnAnyTestResultChanged(TestResult testResult)
+        void OnAnyTestResultChanged(TestResult testResult)
         {
             Notifier?.Invoke(this, testResult);
         }

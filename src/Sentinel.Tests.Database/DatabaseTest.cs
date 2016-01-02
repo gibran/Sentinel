@@ -1,4 +1,4 @@
-﻿using Sentinel.Result;
+﻿using Sentinel.Core;
 using System;
 using System.Configuration;
 using System.Data.Common;

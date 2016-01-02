@@ -1,7 +1,6 @@
 ﻿using FluentScheduler;
-using Sentinel.Result;
 
-namespace Sentinel.Interfaces
+namespace Sentinel.Core.Interfaces
 {
     internal interface ITest : ITask
     {

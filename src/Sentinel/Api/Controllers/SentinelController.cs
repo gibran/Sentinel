@@ -1,20 +1,31 @@
-﻿using Sentinel.Result;
+﻿using Sentinel.Api.Filters;
+using Sentinel.Core;
+using Sentinel.Core.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 
-namespace Sentinel.Mvc4.Controllers
+namespace Sentinel.Api.Controllers
 {
+    [NoCache]
     public class SentinelController : ApiController
     {
-        [Route("api/sentinel/{id}")]
+        ISentinelService SentinelService { get; set; }
+
+        public SentinelController(ISentinelService sentinelService)
+        {
+            if (sentinelService == null) throw new ArgumentNullException(nameof(sentinelService));
+            SentinelService = sentinelService;
+        }
+
+        [Route("sentinel/{id}")]
         public TestResult Get(string id)
         {
             try
             {
-                return SentinelConfig.Instance.GetResultByTestName(id);
+                return SentinelService.GetResultByTestName(id);
             }
             catch (Exception e)
             {
@@ -22,12 +33,12 @@ namespace Sentinel.Mvc4.Controllers
             }
         }
 
-        [Route("api/sentinel")]
+        [Route("sentinel")]
         public IEnumerable<TestResult> Get()
         {
             try
             {
-                return SentinelConfig.Instance.GetAllResults();
+                return SentinelService.GetAllResults();
             }
             catch (Exception e)
             {

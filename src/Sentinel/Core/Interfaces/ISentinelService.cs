@@ -1,11 +1,10 @@
-using Sentinel.Result;
 using System.Collections.Generic;
 
-namespace Sentinel.Interfaces
+namespace Sentinel.Core.Interfaces
 {
     public interface ISentinelService
     {
-        void Add(SentinelTestBase test);
+        void AddTest(SentinelTestBase test);
 
         SentinelInitializer Prepare();
 

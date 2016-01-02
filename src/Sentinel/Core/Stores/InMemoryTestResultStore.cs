@@ -1,9 +1,8 @@
-﻿using Sentinel.Interfaces;
-using Sentinel.Result;
+﻿using Sentinel.Core.Interfaces;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 
-namespace Sentinel.Stores
+namespace Sentinel.Core.Stores
 {
     public class InMemoryTestResultStore : ITestResultStore
     {

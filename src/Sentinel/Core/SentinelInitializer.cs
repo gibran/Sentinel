@@ -1,6 +1,6 @@
 ﻿using FluentScheduler;
 
-namespace Sentinel
+namespace Sentinel.Core
 {
     public class SentinelInitializer
     {

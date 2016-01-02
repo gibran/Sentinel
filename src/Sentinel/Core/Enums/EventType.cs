@@ -1,4 +1,4 @@
-﻿namespace Sentinel.Enums
+﻿namespace Sentinel.Core.Enums
 {
     public enum EventType
     {
