@@ -1,2 +1,1 @@
-# Sentinel - A simple test based checklist for .Net
-
+# Sentinel - A simple integration tests executor for ASP.NET Applications
