@@ -43,7 +43,7 @@ namespace Sentinel.Api.Controllers
             }
             catch (Exception e)
             {
-                throw new HttpResponseException(Request.CreateErrorResponse(HttpStatusCode.BadRequest, e.Message));
+                throw new HttpResponseException(Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e.Message));
             }
         }
     }

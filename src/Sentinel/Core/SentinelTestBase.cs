@@ -1,5 +1,6 @@
 ﻿using Sentinel.Core.Interfaces;
 using System;
+using System.Diagnostics;
 
 namespace Sentinel.Core
 {
@@ -8,6 +9,7 @@ namespace Sentinel.Core
         private readonly object _lock = new object();
         private readonly string _name;
         private readonly string _description;
+        private readonly Stopwatch _stopwatch = new Stopwatch();
 
         private bool _shuttingDown;
         private TestResult _testResult;
@@ -31,7 +33,23 @@ namespace Sentinel.Core
                 if (_shuttingDown)
                     return;
 
-                RunTest();
+                _stopwatch.Restart();
+
+                try
+                {
+                    _testResult = RunTest();
+                }
+                catch (Exception e)
+                {
+                    _testResult = TestResult.CreateFailed(_name, e.Message, _description);
+                }
+
+                _stopwatch.Stop();
+
+                if (_testResult != null)
+                    _testResult.ElapsedMilliseconds = _stopwatch.ElapsedMilliseconds;
+
+                OnResultChanged(null);
             }
         }
 
@@ -50,13 +68,7 @@ namespace Sentinel.Core
             return _testResult;
         }
 
-        protected void SetResult(TestResult testResult)
-        {
-            _testResult = testResult;
-            OnResultChanged(null);
-        }
-
-        protected abstract void RunTest();
+        protected abstract TestResult RunTest();
 
         public event EventHandler ResultChanged;
 

@@ -21,7 +21,7 @@ namespace Sentinel.Core
         public void AddTest(SentinelTestBase test)
         {
             if (_tests.Contains(test))
-                throw new Exception("Test already exists.");
+                throw new Exception($"Test '{test.GetName()}' already exists.");
 
             test.ResultChanged += TestOnResultChanged;
 

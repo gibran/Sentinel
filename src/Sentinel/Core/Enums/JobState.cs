@@ -2,9 +2,9 @@
 {
     public enum JobState
     {
-        New,
-        Waiting,
-        Running,
-        Done
+        New = 1,
+        Waiting = 2,
+        Running = 3,
+        Done = 4
     }
 }

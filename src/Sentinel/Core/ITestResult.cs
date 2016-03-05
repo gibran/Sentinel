@@ -9,5 +9,6 @@ namespace Sentinel.Core
         EventType? EventType { get; set; }
         string Message { get; set; }
         string Description { get; set; }
+        long ElapsedMilliseconds { get; set; }
     }
 }

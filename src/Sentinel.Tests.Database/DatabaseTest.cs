@@ -18,15 +18,12 @@ namespace Sentinel.Tests.Database
             _connectionName = connectionName;
         }
 
-        protected override void RunTest()
+        protected override TestResult RunTest()
         {
             var connection = GetConnection();
 
             if (ReferenceEquals(connection, null))
-            {
-                SetResult(TestResult.CreateFailed(GetName(), "No connections found."));
-                return;
-            }
+                return TestResult.CreateFailed(GetName(), "No connections found.");
 
             try
             {
@@ -42,11 +39,10 @@ namespace Sentinel.Tests.Database
             }
             catch (Exception e)
             {
-                SetResult(TestResult.CreateFailed(GetName(), e.Message));
-                return;
+                return TestResult.CreateFailed(GetName(), e.Message);
             }
 
-            TestResult.CreateSuccess(GetName());
+            return TestResult.CreateSuccess(GetName());
         }
 
         private ConnectionStringSettings GetConnection()
