@@ -11,7 +11,8 @@ namespace Sentinel.Middleware.Extensions
             if (builder == null) throw new ArgumentNullException(nameof(builder));
             if (options == null) throw new ArgumentNullException(nameof(options));
 
-            options.Validate();
+            if (!options.Validate())
+                return builder;
 
             var container = AutofacConfiguration.Configure(options);
             var resolver = new AutofacWebApiDependencyResolver(container);

@@ -2,17 +2,13 @@
 
 namespace Sentinel.Core
 {
-    public class TestResult
+    public class TestResult : ITestResult
     {
         public string Name { get; set; }
         public JobState? JobState { get; set; }
         public EventType? EventType { get; set; }
         public string Message { get; set; }
         public string Description { get; set; }
-
-        protected TestResult()
-        {
-        }
 
         public static TestResult CreateNew(string name)
         {

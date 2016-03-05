@@ -13,7 +13,7 @@ namespace Sentinel.Api.Controllers
     [RoutePrefix("api")]
     public class SentinelController : ApiController
     {
-        private ISentinelService SentinelService { get; set; }
+        private ISentinelService SentinelService { get; }
 
         public SentinelController(ISentinelService sentinelService)
         {

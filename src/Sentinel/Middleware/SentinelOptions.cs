@@ -10,19 +10,14 @@ namespace Sentinel.Middleware
     {
         public ITestResultStore TestResultStore { get; set; }
         public IEnumerable<SentinelTestBase> Tests { get; set; }
-
         public Action<TestResult> OnTestResultChange { internal get; set; }
 
-        internal void Validate()
+        internal bool Validate()
         {
             if (TestResultStore == null)
                 throw new Exception("Test Result Store must be specified.");
 
-            if (Tests == null)
-                throw new Exception("No tests found.");
-
-            if (!Tests.Any())
-                throw new Exception("No tests found.");
+            return Tests != null && Tests.Any();
         }
     }
 }

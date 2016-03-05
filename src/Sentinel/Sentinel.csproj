@@ -87,6 +87,7 @@
     <Compile Include="Core\Interfaces\ISentinelService.cs" />
     <Compile Include="Core\Interfaces\ITest.cs" />
     <Compile Include="Core\Interfaces\ITestResultStore.cs" />
+    <Compile Include="Core\ITestResult.cs" />
     <Compile Include="Core\SentinelInitializer.cs" />
     <Compile Include="Core\SentinelService.cs" />
     <Compile Include="Core\SentinelTestBase.cs" />
