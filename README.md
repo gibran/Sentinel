@@ -6,15 +6,19 @@ public class Startup
         public void Configuration(IAppBuilder app)
         {
             // ...
-
             app.UseSentinel(new SentinelOptions
             {
                 TestResultStore = new InMemoryTestResultStore(), // default
                 Tests = new List<SentinelTestBase>
                 {
+                    new MyCustomTest(
+                        name: "My Custom Test Name",
+                        description: "My Custom Test Description"),
+                        
                     new DatabaseTest(
-                        "Database connection Test", "Check database connection constantly", connectionString: "DefaultConnection"),
-                    new MyCustomTest(TEST_NAME", "TEST_DESCRIPTION")
+                        name: "Database connection Test", 
+                        description: "Check database connection constantly", 
+                        connectionString: "DefaultConnection")
                 },
                 OnTestResultChange = result =>
                 {
