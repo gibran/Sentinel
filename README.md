@@ -12,7 +12,9 @@ public class Startup
                 TestResultStore = new InMemoryTestResultStore(), // default
                 Tests = new List<SentinelTestBase>
                 {
-                    new DatabaseTest("TEST_NAME", "TEST_DESCRIPTION", "DefaultConnection")
+                    new DatabaseTest(
+                        "Database connection Test", "Check database connection constantly", connectionString: "DefaultConnection"),
+                    new MyCustomTest(TEST_NAME", "TEST_DESCRIPTION")
                 },
                 OnTestResultChange = result =>
                 {
