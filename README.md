@@ -1,4 +1,4 @@
-# Sentinel - A simple integration tests executor for ASP.NET Applications
+# Sentinel - A simple integration test runner that runs periodically and displays the test results through a REST API
 
 ```C#
 public class Startup
