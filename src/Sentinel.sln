@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sentinel.Tests.Database", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sentinel.Mvc4.Sample", "Sentinel.Mvc4.Sample\Sentinel.Mvc4.Sample.csproj", "{829FF05D-2C52-4B7E-8AC5-18BBF515F35A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sentinel.Mvc4", "Sentinel.Mvc4\Sentinel.Mvc4.csproj", "{60D32D23-D3A9-4B60-AC64-862A30886AB1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{829FF05D-2C52-4B7E-8AC5-18BBF515F35A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{829FF05D-2C52-4B7E-8AC5-18BBF515F35A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{829FF05D-2C52-4B7E-8AC5-18BBF515F35A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60D32D23-D3A9-4B60-AC64-862A30886AB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60D32D23-D3A9-4B60-AC64-862A30886AB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60D32D23-D3A9-4B60-AC64-862A30886AB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60D32D23-D3A9-4B60-AC64-862A30886AB1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

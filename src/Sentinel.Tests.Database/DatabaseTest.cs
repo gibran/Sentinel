@@ -23,7 +23,7 @@ namespace Sentinel.Tests.Database
             var connection = GetConnection();
 
             if (ReferenceEquals(connection, null))
-                return TestResult.CreateFailed(GetName(), "No connections found.");
+                return TestResult.CreateFailed(GetName(), GetDescription(), "No connections found.");
 
             try
             {
@@ -39,10 +39,10 @@ namespace Sentinel.Tests.Database
             }
             catch (Exception e)
             {
-                return TestResult.CreateFailed(GetName(), e.Message);
+                return TestResult.CreateFailed(GetName(), GetDescription(), e.Message);
             }
 
-            return TestResult.CreateSuccess(GetName());
+            return TestResult.CreateSuccess(GetName(), GetDescription());
         }
 
         private ConnectionStringSettings GetConnection()

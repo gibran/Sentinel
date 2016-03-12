@@ -18,7 +18,7 @@ namespace Sentinel.Core
         {
             _name = name;
             _description = description;
-            _testResult = TestResult.CreateNew(GetName());
+            _testResult = TestResult.CreateNew(GetName(), GetDescription());
         }
 
         public void Shutdown()
@@ -41,7 +41,7 @@ namespace Sentinel.Core
                 }
                 catch (Exception e)
                 {
-                    _testResult = TestResult.CreateFailed(_name, e.Message, _description);
+                    _testResult = TestResult.CreateFailed(_name, _description, e.Message);
                 }
 
                 _stopwatch.Stop();
