@@ -1,6 +1,6 @@
 ﻿using System.Web.Http;
 
-namespace Sentinel.Mvc4
+namespace Sentinel.Mvc4.Sample
 {
     public static class WebApiConfig
     {

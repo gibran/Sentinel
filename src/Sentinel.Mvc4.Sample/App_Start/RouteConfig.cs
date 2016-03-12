@@ -1,7 +1,7 @@
 ﻿using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace Sentinel.Mvc4
+namespace Sentinel.Mvc4.Sample
 {
     public class RouteConfig
     {

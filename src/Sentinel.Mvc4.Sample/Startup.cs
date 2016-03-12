@@ -4,7 +4,7 @@ using Sentinel.Core;
 using Sentinel.Core.Stores;
 using Sentinel.Middleware;
 using Sentinel.Middleware.Extensions;
-using Sentinel.Mvc4;
+using Sentinel.Mvc4.Sample;
 using Sentinel.Tests.Database;
 using System;
 using System.Collections.Generic;
@@ -14,7 +14,7 @@ using System.Web.Routing;
 
 [assembly: OwinStartup(typeof(Startup))]
 
-namespace Sentinel.Mvc4
+namespace Sentinel.Mvc4.Sample
 {
     public class Startup
     {
