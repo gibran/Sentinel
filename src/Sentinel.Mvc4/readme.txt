@@ -24,6 +24,15 @@ namespace <NAMESPACE>
     }
 }
 
+To configure route to see dashboard, please setup:
+
+            routes.MapRoute(
+                name: "DefaultSentinel",
+                url: "{controller}/{action}/{id}",
+                defaults: new {controller = "Sentinel", action = "Index", id = UrlParameter.Optional},
+                 namespaces: new[] { "Sentinel.Mvc4.Controllers" }
+                );
+
 To configure tests for your website's sentinel, please see:
 
 	App_Start/Startup.cs
