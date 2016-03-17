@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Sentinel.Mvc4</id>
+    <version>1.0.2-alpha</version>
+    <title>Sentinel.Mvc4</title>
+    <authors>Gibran Silva, Renato Saito</authors>
+    <owners>Sentinel</owners>
+    <projectUrl>https://github.com/gibran/Sentinel</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Sentinel.Mvc4 - A dashboard in Mvc to Sentinel</description>
+    <copyright>Copyright 2016</copyright>
+    <tags>Sentienl HealthCheck Monitoring</tags>
+  </metadata>
+
+  <files>
+		<file src="Content\Sentinel\fonts\glyphicons-halflings-regular.eot" target="content\Content\Sentinel\fonts\" />
+		<file src="Content\Sentinel\fonts\glyphicons-halflings-regular.ttf" target="content\Content\Sentinel\fonts\" />
+		<file src="Content\Sentinel\fonts\glyphicons-halflings-regular.woff" target="content\Content\Sentinel\fonts\" />
+    <file src="Views\Sentinel\Index.cshtml" target="content\Views\Sentinel\Index.cshtml" />
+    <file src="Views\Shared\_SentinelLayout.cshtml" target="content\Views\Shared\_SentinelLayout.cshtml" />
+  </files>
+</package>

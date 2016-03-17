@@ -1,0 +1,62 @@
+﻿@{
+    ViewBag.Title = "Panel";
+    Layout = "~/Views/Shared/_SentinelLayout.cshtml";
+}
+
+<div>
+    <div class="btn-block button-all">
+        <span class="stats">
+            <span class="stat-node">
+                <span class="glyphicon glyphicon-ok-sign pass-text" class="stat-node-icon"></span>
+                <b>Passed:</b> <span id="passed-stat">0</span>
+            </span>
+            <span class="stat-node">
+                <span class="glyphicon glyphicon-ok-sign pass-warning-text" class="stat-node-icon"></span>
+                <b>Warning:</b>; <span id="warning-stat">0</span>
+            </span>
+            <span class="stat-node">
+                <span class="glyphicon glyphicon-exclamation-sign fail-text" class="stat-node-icon"></span>
+                <b>Failed:</b> <span id="failed-stat">0</span>
+            </span>
+            <span class="stat-node">
+                <span class="glyphicon glyphicon-info-sign info-text" class="stat-node-icon"></span>
+                <b>Pending:</b> <span id="pending-stat">0</span>
+            </span>
+            <span class="stat-node"><b>Total:</b> <span id="all-stat">0</span> </span>
+        </span>
+        <button class="btn btn-default">Check All</button>
+    </div>
+
+    <div class="ng-cloak">
+        <div class="panel-group-wrapper">
+            <h3>Painel de Testes</h3>
+            <div class="panel-group" data-bind="foreach: testResults">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            <a data-toggle="collapse" data-target="#panel-ID" class="collapsed">
+                                <span class="glyphicon"></span>
+                                <span data-bind="text: name"></span>
+                            </a>
+                        </h3>
+                    </div>
+                    <div id="panel-ID" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <p><span data-bind="text: description"></span></p>
+                            <hr />
+                            <h4 data-bind="text: state"></h4>
+                            <p>
+                                <span data-bind="text: message"></span>
+                            </p>
+                            <button class="btn btn-default">Check</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script type="text/javascript" src="@Url.Content("~/Scripts/sentinel/sentinel.js")"></script>
+}
