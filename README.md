@@ -18,7 +18,8 @@ public class Startup
                     new DatabaseTest(
                         name: "Database connection Test", 
                         description: "Check database connection constantly", 
-                        connectionString: "DefaultConnection")
+                        connectionString: "DefaultConnection",
+                        interval:TimeSpan.FromSeconds(30))
                 },
                 OnTestResultChange = result =>
                 {
