@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Sentinel.Core.Interfaces
+namespace Sentinel.Core
 {
     public interface ISentinelService
     {

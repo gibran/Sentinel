@@ -1,5 +1,4 @@
-﻿using Sentinel.Core.Interfaces;
-using System.Collections.Concurrent;
+﻿using System.Collections.Concurrent;
 using System.Collections.Generic;
 
 namespace Sentinel.Core.Stores

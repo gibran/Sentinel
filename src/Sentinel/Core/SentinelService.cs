@@ -1,5 +1,4 @@
 ﻿using FluentScheduler;
-using Sentinel.Core.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;

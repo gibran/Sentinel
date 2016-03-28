@@ -13,7 +13,7 @@ namespace Sentinel.Core
 
         public void Start()
         {
-            TaskManager.Initialize(_service);
+            JobManager.Initialize(_service);
         }
     }
 }

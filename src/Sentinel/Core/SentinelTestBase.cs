@@ -1,5 +1,4 @@
-﻿using Sentinel.Core.Interfaces;
-using System;
+﻿using System;
 using System.Diagnostics;
 
 namespace Sentinel.Core

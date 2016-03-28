@@ -1,7 +1,6 @@
 ﻿using Autofac;
 using Autofac.Integration.WebApi;
 using Sentinel.Core;
-using Sentinel.Core.Interfaces;
 using System;
 
 namespace Sentinel.Middleware

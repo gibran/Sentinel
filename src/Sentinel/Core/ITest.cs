@@ -1,8 +1,8 @@
 ﻿using FluentScheduler;
 
-namespace Sentinel.Core.Interfaces
+namespace Sentinel.Core
 {
-    internal interface ITest : ITask
+    internal interface ITest : IJob
     {
         string GetName();
 
