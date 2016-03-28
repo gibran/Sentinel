@@ -11,12 +11,14 @@ namespace Sentinel.Core
         private readonly Stopwatch _stopwatch = new Stopwatch();
 
         private bool _shuttingDown;
+        private TimeSpan _interval;
         private TestResult _testResult;
 
-        protected SentinelTestBase(string name, string description)
+        protected SentinelTestBase(string name, string description, TimeSpan interval)
         {
             _name = name;
             _description = description;
+            _interval = interval;
             _testResult = TestResult.CreateNew(GetName(), GetDescription());
         }
 
@@ -50,6 +52,11 @@ namespace Sentinel.Core
 
                 OnResultChanged(null);
             }
+        }
+
+        public TimeSpan GetInterval()
+        {
+            return _interval;
         }
 
         public string GetName()

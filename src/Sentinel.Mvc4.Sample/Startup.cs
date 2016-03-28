@@ -29,7 +29,7 @@ namespace Sentinel.Mvc4.Sample
                 TestResultStore = new InMemoryTestResultStore(),
                 Tests = new List<SentinelTestBase>
                 {
-                    new DatabaseTest("test", "test", "DefaultConnection")
+                    new DatabaseTest("Database Test", "Check database connection", "DefaultConnection", interval:TimeSpan.FromSeconds(30))
                 },
                 OnTestResultChange = result =>
                 {
