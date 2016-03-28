@@ -19,7 +19,7 @@ public class Startup
                         name: "Database connection Test", 
                         description: "Check database connection constantly", 
                         connectionString: "DefaultConnection",
-                        interval:TimeSpan.FromSeconds(30))
+                        interval: TimeSpan.FromSeconds(30))
                 },
                 OnTestResultChange = result =>
                 {
