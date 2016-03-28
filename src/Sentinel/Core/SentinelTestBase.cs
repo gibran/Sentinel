@@ -11,7 +11,7 @@ namespace Sentinel.Core
         private readonly Stopwatch _stopwatch = new Stopwatch();
 
         private bool _shuttingDown;
-        private TimeSpan _interval;
+        private readonly TimeSpan _interval;
         private TestResult _testResult;
 
         protected SentinelTestBase(string name, string description, TimeSpan interval)

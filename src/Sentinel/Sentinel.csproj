@@ -95,6 +95,7 @@
     <Compile Include="Core\SentinelTestBase.cs" />
     <Compile Include="Core\Stores\InMemoryTestResultStore.cs" />
     <Compile Include="Core\TestResult.cs" />
+    <Compile Include="Extensions\TimeSpanExtensions.cs" />
     <Compile Include="Middleware\AutofacConfiguration.cs" />
     <Compile Include="Middleware\Extensions\OwinExtensions.cs" />
     <Compile Include="Middleware\Extensions\SentinelAppBuilderExtensions.cs" />

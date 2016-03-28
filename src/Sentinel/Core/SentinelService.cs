@@ -1,7 +1,7 @@
 ﻿using FluentScheduler;
+using Sentinel.Extensions;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Sentinel.Core
 {
@@ -38,8 +38,7 @@ namespace Sentinel.Core
 
         public SentinelInitializer Prepare()
         {
-            _tests.ForEach(t => Schedule(t.Execute).ToRunNow().AndEvery((int)t.GetInterval().TotalSeconds).Seconds());
-
+            _tests.ForEach(t => Schedule(t.Execute).ToRunNow().AndEvery(t.GetInterval().GetTotalSeconds()).Seconds());
             return _sentinelInitializer;
         }
 
