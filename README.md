@@ -13,8 +13,9 @@ public class Startup
                 {
                     new MyCustomTest(
                         name: "My Custom Test Name",
-                        description: "My Custom Test Description"),
-                        
+                        description: "My Custom Test Description",
+                        interval: TimeSpan.FromMinutes(10)),
+
                     new DatabaseTest(
                         name: "Database connection Test", 
                         description: "Check database connection constantly", 
