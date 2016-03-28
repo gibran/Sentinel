@@ -38,10 +38,7 @@ namespace Sentinel.Core
 
         public SentinelInitializer Prepare()
         {
-            _tests
-                .Select((value, index) => new { value, index })
-                .ToList()
-                .ForEach(t => Schedule(t.value.Execute).ToRunNow().AndEvery(t.index + 1).Minutes());
+            _tests.ForEach(t => Schedule(t.Execute).ToRunNow().AndEvery((int)t.GetInterval().TotalSeconds).Seconds());
 
             return _sentinelInitializer;
         }

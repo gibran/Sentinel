@@ -10,7 +10,7 @@ namespace Sentinel.Tests.Database
     {
         private readonly string _connectionName;
 
-        public DatabaseTest(string name, string description, string connectionName) : base(name, description)
+        public DatabaseTest(string name, string description, string connectionName, TimeSpan interval) : base(name, description, interval)
         {
             if (string.IsNullOrWhiteSpace(connectionName))
                 throw new ArgumentNullException(nameof(connectionName));
