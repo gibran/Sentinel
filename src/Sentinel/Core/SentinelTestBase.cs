@@ -16,6 +16,15 @@ namespace Sentinel.Core
 
         protected SentinelTestBase(string name, string description, TimeSpan interval)
         {
+            if (string.IsNullOrWhiteSpace(name))
+                throw new ArgumentNullException(nameof(name));
+
+            if (string.IsNullOrWhiteSpace(description))
+                throw new ArgumentNullException(nameof(description));
+
+            if (interval < TimeSpan.FromSeconds(1))
+                throw new Exception("Sorry, but the test interval should not be less than 1 second.");
+
             _name = name;
             _description = description;
             _interval = interval;
