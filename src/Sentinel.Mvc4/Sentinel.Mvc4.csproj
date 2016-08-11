@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{41449AEC-2A8E-488E-B555-38DA63FC2E2F}</ProjectGuid>
+    <ProjectGuid>{60D32D23-D3A9-4B60-AC64-862A30886AB1}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Sentinel.Mvc4</RootNamespace>

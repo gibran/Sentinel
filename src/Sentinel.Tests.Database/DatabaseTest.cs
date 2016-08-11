@@ -50,7 +50,7 @@ namespace Sentinel.Tests.Database
             var predicate = PredicateBuilder.True<ConnectionStringSettings>();
             predicate = predicate.And(c => c.Name == _connectionName);
 
-            return ConfigurationManager.ConnectionStrings.OfType<ConnectionStringSettings>().Where(predicate.Compile()).FirstOrDefault();
+            return ConfigurationManager.ConnectionStrings.OfType<ConnectionStringSettings>().FirstOrDefault(predicate.Compile());
         }
     }
 }

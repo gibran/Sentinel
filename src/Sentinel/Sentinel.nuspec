@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
-<package >
+<package>
   <metadata>
     <id>Sentinel</id>
-    <version>1.0.0-alpha</version>
+    <version>1.0.1-alpha</version>
     <title>Sentinel</title>
     <authors>- Gibran Silva, Renato Saito</authors>
     <owners>Sentinel</owners>
@@ -11,13 +11,15 @@
     <description>Sentinel - A simple integration test runner that runs periodically and displays the test results through a REST API</description>
     <copyright>Copyright 2016</copyright>
     <tags>Sentinel HealthCheck Monitoring</tags>
-    
+
     <dependencies>
       <dependency id="Autofac.WebApi2" version="3.4.0" />
       <dependency id="FluentScheduler" version="3.1.46" />
       <dependency id="Newtonsoft.Json" version="8.0.3" />
-      <dependency id="Microsoft.AspNet.WebApi.Client" version="5.2.3" />
       <dependency id="Microsoft.Owin" version="3.0.1" />
+      <dependency id="Microsoft.Owin.Host.SystemWeb" version="3.0.1" />
+      <dependency id="Microsoft.AspNet.WebApi.Client" version="5.2.3" />
+      <dependency id="Microsoft.AspNet.WebApi.WebHost" version="5.2.3" />
     </dependencies>
   </metadata>
 </package>
